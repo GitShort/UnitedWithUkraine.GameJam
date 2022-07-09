@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     bool jump = false;
     bool movement = true;
+    bool ground = false;
     public float jumpHeight = 0f;
     public float jumpSpeed = 0f;
 
@@ -47,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
 
             charger += Time.deltaTime;
-            movement = false;
 
             charger = charger / chargeTime;
             if (charger > 1)
@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && !jump)
         {
-            if(chargeParticles.isPlaying)
+            movement = false;
+            if (chargeParticles.isPlaying)
                 chargeParticles.Stop();
             StartCoroutine(Jump());
         }
@@ -89,7 +90,10 @@ public class PlayerController : MonoBehaviour
 
                 Debug.DrawRay(transform.position, indicator.transform.position-transform.position, Color.red);
                 //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, (float)(1 - Mathf.Exp(-sensitivity * Time.deltaTime)));
-                transform.LookAt(targetPosition);
+                if (movement)
+                {
+                    transform.LookAt(targetPosition);
+                }
             }
         }
     }
@@ -113,7 +117,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Jump()
 	{
         jumpParticles.Play();
-
+        ground = false;
         float originalHeight = transform.position.y;
         float maxHeight = originalHeight + (jumpHeight*charger);
         rb.useGravity = false;
@@ -122,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
 
-        while (transform.position.y < maxHeight)
+        while (transform.position.y < maxHeight && !ground)
 		{
             //Debug.Log(rb.velocity.y);
             transform.position += transform.up * Time.deltaTime * jumpSpeed;
@@ -131,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
         rb.useGravity = true;
 
-		while (transform.position.y > originalHeight)
+		while (!ground)
 		{
             falling = true;
             transform.position -= transform.up * Time.deltaTime * jumpSpeed * 3f;
@@ -150,5 +154,12 @@ public class PlayerController : MonoBehaviour
         yield return null;
 	}
 
-
+	private void OnCollisionEnter(Collision collision)
+	{
+        Debug.Log(collision.gameObject.tag);
+        if(collision.gameObject.tag == "Ground")
+		{
+            ground = true;
+        }
+	}
 }

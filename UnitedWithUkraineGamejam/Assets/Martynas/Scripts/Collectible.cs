@@ -8,9 +8,11 @@ public class Collectible : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.GetComponent<PlayerController>() != null)
+		if(other.GetComponent<PopupText>() != null)
 		{
-			Destroy(gameObject);
+			other.GetComponent<PopupText>().Collected("text");
+			Debug.Log(gameObject);
+			Destroy(gameObject, 1f);
 		}
 	}
 }

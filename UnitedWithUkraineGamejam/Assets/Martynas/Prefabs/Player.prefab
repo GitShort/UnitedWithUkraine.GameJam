@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.07, y: 0.89}
+  m_AnchoredPosition: {x: -0.07, y: 0.405}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3529276059228080548
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 3529276061358198081}
   - component: {fileID: 3529276061358198082}
   - component: {fileID: 3529276061358198085}
+  - component: {fileID: 877003999}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -218,7 +219,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3529276061358198083}
-  m_Material: {fileID: 13400000, guid: 104caeb9584900c41b5e1ea67e0f6403, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -253,13 +254,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  jumpHeight: 3
+  jumpHeight: 6
   jumpSpeed: 6
   chargeTime: 1
   indicator: {fileID: 0}
   jumpParticles: {fileID: 7897073578172949364}
   landParticles: {fileID: 724867032180693588}
   chargeParticles: {fileID: 5186484520182421318}
+--- !u!114 &877003999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529276061358198083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce00941b87fefa647897c8ec49f6c0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textObject: {fileID: 1437845446216352085, guid: 9c84f93d0f0ff6f4ab57f728de51f796,
+    type: 3}
 --- !u!1001 &1595145416
 PrefabInstance:
   m_ObjectHideFlags: 0
