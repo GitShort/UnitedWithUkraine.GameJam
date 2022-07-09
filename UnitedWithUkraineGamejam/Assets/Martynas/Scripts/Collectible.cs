@@ -6,6 +6,8 @@ public class Collectible : MonoBehaviour
 {
     [SerializeField] string popUpText = "";
 
+
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if(other.GetComponent<PopupText>() != null)

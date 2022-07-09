@@ -37,7 +37,7 @@ public class PopupText : MonoBehaviour
 	{
         while (floatTime > 0f)
         {
-            //textObject.transform.position += transform.up * Time.deltaTime;
+            textObject.transform.position += transform.up * Time.deltaTime;
             textObject.transform.LookAt(CameraLocation);
             yield return null;
         }
