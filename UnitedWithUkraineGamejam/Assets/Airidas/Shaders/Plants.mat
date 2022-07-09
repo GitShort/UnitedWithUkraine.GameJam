@@ -96,7 +96,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.16470589, g: 0.49019608, b: 0.1254902, a: 1}
+    - _Color: {r: 0.2067678, g: 0.4433962, b: 0.047685977, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindMovement: {r: 2, g: 0, b: 0, a: 0}
