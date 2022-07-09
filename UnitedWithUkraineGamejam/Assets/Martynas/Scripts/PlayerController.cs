@@ -22,13 +22,18 @@ public class PlayerController : MonoBehaviour
 
     bool falling = false;
 
+    [TagSelector]
+    public string[] jumptableTags = new string[] { };
+
     //---------------
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
     RaycastHit cameraRayHit;    // The object that the ray hits
 
+    [Space(15)]
     public GameObject indicator;
 
+    [Space(15)]
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] ParticleSystem landParticles;
     [SerializeField] ParticleSystem chargeParticles;
@@ -64,7 +69,6 @@ public class PlayerController : MonoBehaviour
             emission.rateOverTime = 20 * charger;
 
         }
-        Move();
 
         if (Input.GetMouseButtonUp(0) && !jump)
         {
@@ -73,6 +77,12 @@ public class PlayerController : MonoBehaviour
                 chargeParticles.Stop();
             StartCoroutine(Jump());
         }
+
+    }
+
+	private void FixedUpdate()
+	{
+        Move();
         // Cast a ray from the camera to the mouse cursor
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -91,7 +101,7 @@ public class PlayerController : MonoBehaviour
                 //Vector3 direction = targetPosition - transform.position;
                 //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
 
-                Debug.DrawRay(transform.position, indicator.transform.position-transform.position, Color.red);
+                Debug.DrawRay(transform.position, indicator.transform.position - transform.position, Color.red);
                 //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, (float)(1 - Mathf.Exp(-sensitivity * Time.deltaTime)));
                 if (movement)
                 {
@@ -101,7 +111,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move()
+	private void Move()
     {
         if (jump)
         {
@@ -160,10 +170,13 @@ public class PlayerController : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
         Debug.Log(collision.gameObject.tag);
-        if(collision.gameObject.tag == "Ground")
+        foreach(string item in jumptableTags)
 		{
-            ground = true;
-        }
+            if(collision.gameObject.tag == item)
+			{
+                ground = true;
+            }
+		}
 	}
 
     private void OnTriggerEnter(Collider other)
