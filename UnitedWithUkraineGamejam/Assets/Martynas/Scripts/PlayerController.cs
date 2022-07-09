@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float movementSpeed = 4f;
 
-    Vector3 forward, right;
+    Vector3 forward;
 
     bool jump = false;
     bool movement = true;
@@ -19,51 +19,76 @@ public class PlayerController : MonoBehaviour
     private float charger = 0f;
     public float chargeTime = 3f;
 
-    Vector3 rightMovement;
-    Vector3 upMovement;
-    Vector3 destination;
+    bool falling = false;
+
+    //---------------
+
+    Ray cameraRay;                // The ray that is cast from the camera to the mouse position
+    RaycastHit cameraRayHit;    // The object that the ray hits
+
+    public GameObject indicator;
 
     private void Start()
 	{
         forward = Camera.main.transform.forward;
         forward.y = 0;
         forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         rb = GetComponent<Rigidbody>();
+        //Cursor.lockState = CursorLockMode.Locked;
 	}
 
-	private void Update()
-	{
-        if (Input.GetKey(KeyCode.Space) && !jump)
+    private void Update()
+    {
+        if (Input.GetMouseButton(0) && !jump)
         {
             charger += Time.deltaTime;
             movement = false;
         }
         Move();
 
-        if (Input.GetKeyUp(KeyCode.Space) && !jump)
+        if (Input.GetMouseButtonUp(0) && !jump)
         {
             StartCoroutine(Jump());
+        }
+        // Cast a ray from the camera to the mouse cursor
+        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // If the ray strikes an object...
+        if (Physics.Raycast(cameraRay, out cameraRayHit))
+        {
+            // ...and if that object is the ground...
+            if (cameraRayHit.transform.tag == "Ground")
+            {
+                // ...make the cube rotate (only on the Y axis) to face the ray hit's position 
+
+                Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
+                indicator.transform.position = cameraRayHit.point;
+                //Vector3 thisObjectPosition = new Vector3(transform.position.x, ca.transform.position.y, transform.position.z);
+
+                //Vector3 direction = targetPosition - transform.position;
+                //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+
+                Debug.DrawRay(transform.position, indicator.transform.position-transform.position, Color.red);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, (float)(1 - Mathf.Exp(-sensitivity * Time.deltaTime)));
+                transform.LookAt(targetPosition);
+            }
         }
     }
 
     private void Move()
     {
-        if (!jump)
+        if (jump)
         {
-            rightMovement = right * movementSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-            upMovement = forward * movementSpeed * Time.deltaTime * Input.GetAxis("Vertical");
+            if (falling)
+            {
+                transform.position += transform.forward * movementSpeed * Time.deltaTime;
+            }
+            else
+			{
+                transform.position += transform.forward * (movementSpeed * 3f) * Time.deltaTime;
+			}
         }
-        Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-        if (heading != Vector3.zero && movement)
-        {
-            transform.forward = heading;
-            destination = transform.forward;
-        }
-        if(jump)
-		{
-            transform.position += destination * movementSpeed * Time.deltaTime;
-        }
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
 	}
 
     IEnumerator Jump()
@@ -81,25 +106,31 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
 
-        while(transform.position.y < maxHeight)
+        while (transform.position.y < maxHeight)
 		{
+            //Debug.Log(rb.velocity.y);
             transform.position += transform.up * Time.deltaTime * jumpSpeed;
             yield return null;
         }
 
         rb.useGravity = true;
 
-        while (transform.position.y > originalHeight)
+		while (transform.position.y > originalHeight)
 		{
-            transform.position -= transform.up * Time.deltaTime * jumpSpeed;
-            yield return null;
+            falling = true;
+            transform.position -= transform.up * Time.deltaTime * jumpSpeed * 3f;
+			yield return null;
 		}
 
-
+        falling = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.useGravity = true;
         jump = false;
         charger = 0;
         movement = true;
         yield return null;
 	}
+
+
 }
