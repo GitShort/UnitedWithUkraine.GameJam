@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject UICanvas;
     public GameObject UICanvasPause;
+    public TextMeshProUGUI jumpText;
 
     public Texture2D mouseCursor;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
     public bool pauseGame = false;
+
+    public PlayerController player;
 
     private void Awake()
     {
@@ -48,11 +52,12 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-        if(SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape))
+        if(SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape) && !levelPassed)
 		{
             UICanvasPause.SetActive(true);
             Cursor.visible = true;
             pauseGame = true;
+            Time.timeScale = 0;
         }
 	}
 
@@ -61,6 +66,9 @@ public class GameManager : MonoBehaviour
         levelPassed = true;
         UICanvas.SetActive(true);
         pauseGame = true;
+        Cursor.visible = true;
+        jumpText.gameObject.SetActive(true);
+        jumpText.text = "Jump count: "+ player.getJumps().ToString();
     }
 
     public bool getLevelStatus()
@@ -88,5 +96,6 @@ public class GameManager : MonoBehaviour
         UICanvasPause.SetActive(false);
         Cursor.visible = false;
         pauseGame = false;
+        Time.timeScale = 1;
     }
 }

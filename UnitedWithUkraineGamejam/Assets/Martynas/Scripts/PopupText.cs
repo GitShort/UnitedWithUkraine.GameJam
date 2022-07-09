@@ -8,11 +8,11 @@ public class PopupText : MonoBehaviour
     [SerializeField] GameObject textObject;
     private float floatTime = 3f;
     [SerializeField] float startingTime = 3f;
-    private Vector3 CameraLocation;
+    private Transform CameraLocation;
     // Start is called before the first frame update
     void Start()
     {
-        CameraLocation = Camera.main.transform.position;
+        CameraLocation = Camera.main.transform;
         floatTime = startingTime;
         textObject.SetActive(false);
     }
@@ -37,7 +37,7 @@ public class PopupText : MonoBehaviour
 	{
         while (floatTime > 0f)
         {
-            textObject.transform.position += transform.up * Time.deltaTime;
+            //textObject.transform.position += transform.up * Time.deltaTime;
             textObject.transform.LookAt(CameraLocation);
             yield return null;
         }

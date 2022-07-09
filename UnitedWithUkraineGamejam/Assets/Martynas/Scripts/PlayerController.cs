@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private float charger = 0f;
     public float chargeTime = 3f;
+    public int jumpCount = 0;
 
     bool falling = false;
 
@@ -182,7 +183,7 @@ public class PlayerController : MonoBehaviour
         charger = 0;
         movement = true;
         landParticles.Play();
-
+        jumpCount++;
         yield return null;
 	}
 
@@ -216,8 +217,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator setFloor()
 	{
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         bottom = transform.position;
-
     }
+
+    public int getJumps()
+	{
+        return jumpCount;
+	}
 }
