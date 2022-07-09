@@ -90,7 +90,15 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(cameraRay, out cameraRayHit))
         {
             // ...and if that object is the ground...
-            if (cameraRayHit.transform.tag == "Ground")
+            bool found = false;
+            foreach (string item in jumptableTags)
+            {
+                if (item == cameraRayHit.transform.tag)
+				{
+                    found = true;
+                }
+			}
+            if (found)
             {
                 // ...make the cube rotate (only on the Y axis) to face the ray hit's position 
 
@@ -169,14 +177,10 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-        Debug.Log(collision.gameObject.tag);
-        foreach(string item in jumptableTags)
-		{
-            if(collision.gameObject.tag == item)
-			{
-                ground = true;
-            }
-		}
+        if (collision.gameObject.tag == "Ground")
+        {
+            ground = true;
+        }
 	}
 
     private void OnTriggerEnter(Collider other)
