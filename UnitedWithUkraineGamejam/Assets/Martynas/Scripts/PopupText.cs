@@ -5,11 +5,12 @@ using TMPro;
 
 public class PopupText : MonoBehaviour
 {
-    [SerializeField] GameObject textObject; 
+    [SerializeField] GameObject textObject;
+    public float floatTime = 3f;
     // Start is called before the first frame update
     void Start()
     {
-        //textObject.gameObject.SetActive(false);
+        textObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,5 +22,8 @@ public class PopupText : MonoBehaviour
     public void Collected(string text)
 	{
         textObject.SetActive(true);
+        textObject.GetComponent<TextMeshPro>().text = text;
 	}
+
+
 }
