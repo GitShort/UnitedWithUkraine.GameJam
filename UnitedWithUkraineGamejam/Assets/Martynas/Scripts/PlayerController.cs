@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem landParticles;
     [SerializeField] ParticleSystem chargeParticles;
 
+    [SerializeField] GameObject waterParticles;
+    [SerializeField] GameObject borschtParticles;
+
     private void Start()
 	{
         forward = Camera.main.transform.forward;
@@ -162,4 +165,21 @@ public class PlayerController : MonoBehaviour
             ground = true;
         }
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Water"))
+        {
+            PlayParticles(waterParticles);
+        }
+    }
+
+    void PlayParticles(GameObject gameobject)
+    {
+        var go = Instantiate(gameobject, transform.position, Quaternion.identity);
+        if(!go.GetComponent<ParticleSystem>().isPlaying)
+            go.GetComponent<ParticleSystem>().Play();
+        Destroy(go, 3f);
+    }
+
 }

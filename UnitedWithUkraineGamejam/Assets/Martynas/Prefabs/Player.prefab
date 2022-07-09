@@ -223,8 +223,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.50461197, y: 1.1047072, z: 1.1310165}
-  m_Center: {x: -0.02335906, y: 0.05235365, z: 0.065508366}
+  m_Size: {x: 0.45773184, y: 0.36606485, z: 0.857602}
+  m_Center: {x: 0.00008100271, y: -0.31696752, z: 0.032078445}
 --- !u!54 &3529276061358198082
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &3529276061358198085
 MonoBehaviour:
@@ -253,14 +253,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b869d7d9f8dadac43834fcc35294b6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  jumpHeight: 6
+  movementSpeed: 1.5
+  jumpHeight: 4
   jumpSpeed: 6
   chargeTime: 1
   indicator: {fileID: 0}
   jumpParticles: {fileID: 7897073578172949364}
   landParticles: {fileID: 724867032180693588}
   chargeParticles: {fileID: 5186484520182421318}
+  waterParticles: {fileID: 7206665209827534397, guid: 09037e411b9c33947bd869184486c464,
+    type: 3}
+  borschtParticles: {fileID: 0}
 --- !u!114 &877003999
 MonoBehaviour:
   m_ObjectHideFlags: 0
