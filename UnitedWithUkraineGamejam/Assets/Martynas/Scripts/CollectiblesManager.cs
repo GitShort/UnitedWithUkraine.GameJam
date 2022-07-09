@@ -31,4 +31,9 @@ public class CollectiblesManager : MonoBehaviour
             GameManager.Instance.LevelFinished();
 		}
 	}
+
+    public int getTextCount()
+	{
+        return CollectibleGO.Count;
+	}
 }
