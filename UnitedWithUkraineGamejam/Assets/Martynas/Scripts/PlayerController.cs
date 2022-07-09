@@ -200,6 +200,10 @@ public class PlayerController : MonoBehaviour
         {
             PlayParticles(waterParticles);
         }
+        if (other.gameObject.tag.Equals("Borscht"))
+        {
+            PlayParticles(borschtParticles);
+        }
     }
 
     void PlayParticles(GameObject gameobject)

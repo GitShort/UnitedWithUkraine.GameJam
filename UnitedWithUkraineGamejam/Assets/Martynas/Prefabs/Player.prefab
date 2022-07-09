@@ -253,7 +253,8 @@ MonoBehaviour:
   chargeParticles: {fileID: 5186484520182421318}
   waterParticles: {fileID: 7206665209827534397, guid: 09037e411b9c33947bd869184486c464,
     type: 3}
-  borschtParticles: {fileID: 0}
+  borschtParticles: {fileID: 7206665209827534397, guid: b6791316c8c5e774c86c3194e629311c,
+    type: 3}
 --- !u!114 &877003999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,28 +458,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.468
+      value: -0.431
       objectReference: {fileID: 0}
     - target: {fileID: 6901828517042506702, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
         type: 3}
@@ -519,11 +505,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901828517042506705, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6901828517042506707, guid: cb0bf24d3545a3f4fb8a7dd26b182011,
         type: 3}
