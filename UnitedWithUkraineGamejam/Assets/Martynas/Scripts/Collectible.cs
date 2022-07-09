@@ -11,6 +11,7 @@ public class Collectible : MonoBehaviour
 		if(other.GetComponent<PopupText>() != null)
 		{
 			other.GetComponent<PopupText>().Collected(popUpText);
+			CollectiblesManager.Instance.FoodCollected();
 			Destroy(gameObject);
 		}
 	}

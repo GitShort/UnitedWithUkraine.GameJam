@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     float movementSpeed = 4f;
 
     Vector3 forward;
+    Vector3 bottom;
 
     bool jump = false;
     bool movement = true;
@@ -48,72 +49,78 @@ public class PlayerController : MonoBehaviour
         forward = Vector3.Normalize(forward);
         rb = GetComponent<Rigidbody>();
         //Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(setFloor());
 	}
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && !jump)
+        if (!GameManager.Instance.getLevelStatus())
         {
-
-            charger += Time.deltaTime;
-
-            charger = charger / chargeTime;
-            if (charger > 1)
+            if (Input.GetMouseButton(0) && !jump)
             {
-                charger = 1;
+
+                charger += Time.deltaTime;
+
+                charger = charger / chargeTime;
+                if (charger > 1)
+                {
+                    charger = 1;
+                }
+                if (!chargeParticles.isPlaying)
+                    chargeParticles.Play();
+
+                var emission = chargeParticles.emission;
+                emission.rateOverTime = 20 * charger;
+
             }
-            if (!chargeParticles.isPlaying)
-                chargeParticles.Play();
 
-            var emission = chargeParticles.emission;
-            emission.rateOverTime = 20 * charger;
-
+            if (Input.GetMouseButtonUp(0) && !jump)
+            {
+                movement = false;
+                if (chargeParticles.isPlaying)
+                    chargeParticles.Stop();
+                StartCoroutine(Jump());
+            }
         }
-
-        if (Input.GetMouseButtonUp(0) && !jump)
-        {
-            movement = false;
-            if (chargeParticles.isPlaying)
-                chargeParticles.Stop();
-            StartCoroutine(Jump());
-        }
-
     }
 
 	private void FixedUpdate()
 	{
-        Move();
-        // Cast a ray from the camera to the mouse cursor
-        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // If the ray strikes an object...
-        if (Physics.Raycast(cameraRay, out cameraRayHit))
+        if (!GameManager.Instance.getLevelStatus())
         {
-            // ...and if that object is the ground...
-            bool found = false;
-            foreach (string item in jumptableTags)
+            Move();
+            // Cast a ray from the camera to the mouse cursor
+            cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            // If the ray strikes an object...
+            if (Physics.Raycast(cameraRay, out cameraRayHit))
             {
-                if (item == cameraRayHit.transform.tag)
-				{
-                    found = true;
-                }
-			}
-            if (found)
-            {
-                // ...make the cube rotate (only on the Y axis) to face the ray hit's position 
-
-                Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
-                indicator.transform.position = cameraRayHit.point;
-                //Vector3 thisObjectPosition = new Vector3(transform.position.x, ca.transform.position.y, transform.position.z);
-
-                //Vector3 direction = targetPosition - transform.position;
-                //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
-
-                Debug.DrawRay(transform.position, indicator.transform.position - transform.position, Color.red);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, (float)(1 - Mathf.Exp(-sensitivity * Time.deltaTime)));
-                if (movement)
+                // ...and if that object is the ground...
+                bool found = false;
+                foreach (string item in jumptableTags)
                 {
-                    transform.LookAt(targetPosition);
+                    if (item == cameraRayHit.transform.tag)
+                    {
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    // ...make the cube rotate (only on the Y axis) to face the ray hit's position 
+
+                    Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
+                    indicator.transform.position = cameraRayHit.point;
+                    //Vector3 thisObjectPosition = new Vector3(transform.position.x, ca.transform.position.y, transform.position.z);
+
+                    //Vector3 direction = targetPosition - transform.position;
+                    //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+
+                    Debug.DrawRay(transform.position, indicator.transform.position - transform.position, Color.red);
+                    //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, (float)(1 - Mathf.Exp(-sensitivity * Time.deltaTime)));
+                    if (movement)
+                    {
+                        transform.LookAt(targetPosition);
+                    }
                 }
             }
         }
@@ -156,13 +163,17 @@ public class PlayerController : MonoBehaviour
 
         rb.useGravity = true;
 
-		while (!ground)
+		while (!ground && transform.position.y > bottom.y)
 		{
             falling = true;
             transform.position -= transform.up * Time.deltaTime * jumpSpeed * 3f;
 			yield return null;
 		}
 
+        if(transform.position.y < bottom.y)
+		{
+            transform.position += transform.up * Time.deltaTime * jumpSpeed * 3f;
+        }
         falling = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -183,7 +194,7 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-    private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Water"))
         {
@@ -199,4 +210,10 @@ public class PlayerController : MonoBehaviour
         Destroy(go, 3f);
     }
 
+    IEnumerator setFloor()
+	{
+        yield return new WaitForSeconds(2f);
+        bottom = transform.position;
+
+    }
 }
