@@ -125,11 +125,11 @@ public class PlayerController : MonoBehaviour
         {
             if (falling)
             {
-                transform.position += transform.forward * movementSpeed * Time.deltaTime;
+                transform.position += transform.forward * (movementSpeed * 2f) * Time.deltaTime;
             }
             else
 			{
-                transform.position += transform.forward * (movementSpeed * 3f) * Time.deltaTime;
+                transform.position += transform.forward * (movementSpeed * 2f) * Time.deltaTime;
 			}
         }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
