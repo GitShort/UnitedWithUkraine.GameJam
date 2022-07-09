@@ -91,7 +91,7 @@ MonoBehaviour:
       cachedPunctualLightShadowAtlas: 4096
       cachedAreaLightShadowAtlas: 4096
       shadowResolutionDirectional:
-        m_Values: 00020000000400000008000000100000
+        m_Values: 00040000000800000008000000100000
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionPunctual:
@@ -140,6 +140,7 @@ MonoBehaviour:
       singlePass: 1
       occlusionMesh: 1
       cameraJitter: 0
+      allowMotionBlur: 1
     postProcessQualitySettings:
       NearBlurSampleCount: 030000000500000008000000
       NearBlurMaxRadius:

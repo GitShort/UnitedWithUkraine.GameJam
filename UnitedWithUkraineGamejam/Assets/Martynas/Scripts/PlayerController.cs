@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject indicator;
 
+    [SerializeField] ParticleSystem jumpParticles;
+    [SerializeField] ParticleSystem landParticles;
+    [SerializeField] ParticleSystem chargeParticles;
+
     private void Start()
 	{
         forward = Camera.main.transform.forward;
@@ -41,13 +45,28 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !jump)
         {
+
             charger += Time.deltaTime;
             movement = false;
+
+            charger = charger / chargeTime;
+            if (charger > 1)
+            {
+                charger = 1;
+            }
+            if (!chargeParticles.isPlaying)
+                chargeParticles.Play();
+
+            var emission = chargeParticles.emission;
+            emission.rateOverTime = 20 * charger;
+
         }
         Move();
 
         if (Input.GetMouseButtonUp(0) && !jump)
         {
+            if(chargeParticles.isPlaying)
+                chargeParticles.Stop();
             StartCoroutine(Jump());
         }
         // Cast a ray from the camera to the mouse cursor
@@ -93,11 +112,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Jump()
 	{
-        charger = charger / chargeTime;
-        if(charger > 1)
-		{
-            charger = 1;
-		}
+        jumpParticles.Play();
+
         float originalHeight = transform.position.y;
         float maxHeight = originalHeight + (jumpHeight*charger);
         rb.useGravity = false;
@@ -129,6 +145,8 @@ public class PlayerController : MonoBehaviour
         jump = false;
         charger = 0;
         movement = true;
+        landParticles.Play();
+
         yield return null;
 	}
 
