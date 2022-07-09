@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.getLevelStatus())
+        if (!GameManager.Instance.getLevelStatus() && !GameManager.Instance.pauseGame)
         {
             if (Input.GetMouseButton(0) && !jump)
             {
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        if (!GameManager.Instance.getLevelStatus())
+        if (!GameManager.Instance.getLevelStatus() && !GameManager.Instance.pauseGame)
         {
             Move();
             // Cast a ray from the camera to the mouse cursor

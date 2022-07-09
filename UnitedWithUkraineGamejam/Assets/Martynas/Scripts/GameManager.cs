@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     private bool levelPassed = false;
 
     public GameObject UICanvas;
+    public GameObject UICanvasPause;
 
     public Texture2D mouseCursor;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+
+    public bool pauseGame = false;
 
     private void Awake()
     {
@@ -38,20 +41,26 @@ public class GameManager : MonoBehaviour
         }
         else
 		{
+            Cursor.visible = true;
             Cursor.SetCursor(mouseCursor, hotSpot, cursorMode);
         }
 	}
 
 	private void Update()
 	{
-
+        if(SceneManager.GetActiveScene().buildIndex != 0 && Input.GetKeyDown(KeyCode.Escape))
+		{
+            UICanvasPause.SetActive(true);
+            Cursor.visible = true;
+            pauseGame = true;
+        }
 	}
 
 	public void LevelFinished()
 	{
         levelPassed = true;
         UICanvas.SetActive(true);
-
+        pauseGame = true;
     }
 
     public bool getLevelStatus()
@@ -71,7 +80,13 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
 	{
-        Debug.Log("quiting");
         Application.Quit();
 	}
+
+    public void ContinueGame()
+	{
+        UICanvasPause.SetActive(false);
+        Cursor.visible = false;
+        pauseGame = false;
+    }
 }

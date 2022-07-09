@@ -671,6 +671,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3644330530421178529, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644330530421178529, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644330530421178529, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644330530421178529, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4971748120891878842, guid: 767f59d701bc2af41973ed8f7e9317b1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -701,6 +721,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5063179440942188500, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063179440942188500, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063179440942188500, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063179440942188500, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7747835036954851063, guid: 767f59d701bc2af41973ed8f7e9317b1,
         type: 3}
       propertyPath: CollectibleGO.Array.data[0]
@@ -711,11 +751,6 @@ PrefabInstance:
       propertyPath: CollectibleGO.Array.data[1]
       value: 
       objectReference: {fileID: 1818672027}
-    - target: {fileID: 8411948620317540687, guid: 767f59d701bc2af41973ed8f7e9317b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767f59d701bc2af41973ed8f7e9317b1, type: 3}
 --- !u!1 &1818672027
