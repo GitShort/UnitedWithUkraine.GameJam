@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip dropSound;
     [SerializeField] AudioClip jumpSound;
 
+    [SerializeField] AudioClip[] eatSounds;
+    [SerializeField] AudioSource audioSource;
     //---------------
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
@@ -216,6 +218,14 @@ public class PlayerController : MonoBehaviour
             PlayParticles(deathParticles);
             this.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
             StartCoroutine(loseLevel());
+        }
+        if (other.gameObject.tag.Equals("Collectible"))
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = eatSounds[Random.Range(0, 1)];
+                audioSource.Play();
+            }
         }
     }
 

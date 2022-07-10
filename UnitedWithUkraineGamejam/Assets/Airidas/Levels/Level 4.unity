@@ -2422,6 +2422,16 @@ PrefabInstance:
       propertyPath: CollectibleGO.Array.data[0]
       value: 
       objectReference: {fileID: 1426882340}
+    - target: {fileID: 7778863692680781912, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 412d0a4f193ac47428e854517f06df15, type: 2}
+    - target: {fileID: 8784652205016465289, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 412d0a4f193ac47428e854517f06df15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767f59d701bc2af41973ed8f7e9317b1, type: 3}
 --- !u!1 &2068904237

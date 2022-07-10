@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 8900223525896892748}
   m_Layer: 2
   m_Name: Collectibe - Borscht
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

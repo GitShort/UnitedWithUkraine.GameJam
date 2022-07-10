@@ -1643,7 +1643,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1625557958
 PrefabInstance:
@@ -2203,6 +2203,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4562210654812729534, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: eatSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7747835036954851063, guid: 767f59d701bc2af41973ed8f7e9317b1,
         type: 3}
       propertyPath: CollectibleGO.Array.data[0]
@@ -2213,6 +2218,16 @@ PrefabInstance:
       propertyPath: CollectibleGO.Array.data[1]
       value: 
       objectReference: {fileID: 1509067674}
+    - target: {fileID: 7778863692680781912, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 412d0a4f193ac47428e854517f06df15, type: 2}
+    - target: {fileID: 8784652205016465289, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 412d0a4f193ac47428e854517f06df15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767f59d701bc2af41973ed8f7e9317b1, type: 3}
 --- !u!1 &2046683670
@@ -2775,6 +2790,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectibe - Chicken Kiev
       objectReference: {fileID: 0}
+    - target: {fileID: 4565378370751894146, guid: 047200f6ae480644c9898332efd0df47,
+        type: 3}
+      propertyPath: eatSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565378370751894146, guid: 047200f6ae480644c9898332efd0df47,
+        type: 3}
+      propertyPath: eatSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: d64c61eeee5524a4b810362114797944, type: 3}
+    - target: {fileID: 4565378370751894146, guid: 047200f6ae480644c9898332efd0df47,
+        type: 3}
+      propertyPath: eatSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f65eb4bafedbb6647b0ca4111b2d1824, type: 3}
     - target: {fileID: 4565378370751894147, guid: 047200f6ae480644c9898332efd0df47,
         type: 3}
       propertyPath: m_RootOrder
@@ -4514,14 +4544,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390756129959603507}
-  m_LocalRotation: {x: -0.20941566, y: -0.26695317, z: 0.43198004, w: 0.8356281}
-  m_LocalPosition: {x: 0.8635876, y: 0.12506042, z: 10.344128}
+  m_LocalRotation: {x: -0.11237328, y: -0.31110495, z: 0.36248678, w: 0.87131464}
+  m_LocalPosition: {x: 0.72, y: -0.079929896, z: 10.4}
   m_LocalScale: {x: 178.55823, y: 178.55823, z: 38.345413}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5109314727458095832}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.703, y: -38.6, z: 44.58}
 --- !u!23 &5888892788351824885
 MeshRenderer:
   m_ObjectHideFlags: 0

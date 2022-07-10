@@ -8,6 +8,7 @@ TagManager:
   - Lose
   - Water
   - Borscht
+  - Collectible
   layers:
   - Default
   - TransparentFX
