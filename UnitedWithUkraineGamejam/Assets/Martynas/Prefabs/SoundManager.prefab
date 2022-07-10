@@ -53,7 +53,10 @@ MonoBehaviour:
   LowPitchRange: 0.95
   HighPitchRange: 1.05
   bgMusic: {fileID: 8300000, guid: 0fd5bc3cc74b1094187be8da63a8e34e, type: 3}
-  meowingSonunds: []
+  meowingSounds:
+  - {fileID: 8300000, guid: 0792ab83dd17b4f47989167aec313881, type: 3}
+  - {fileID: 8300000, guid: 3b853d45e9f9bed4e8a1306fb9e5a96d, type: 3}
+  - {fileID: 8300000, guid: bf84b5e3d22d2644291a8cc6e4566785, type: 3}
   startingTime: 5
   randomTimer: 0
   modifier: 0
