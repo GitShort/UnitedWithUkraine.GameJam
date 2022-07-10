@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [TagSelector]
     public string[] jumptableTags = new string[] { };
 
+    [SerializeField] AudioClip dropSound;
     [SerializeField] AudioClip jumpSound;
 
     //---------------
@@ -154,6 +155,7 @@ public class PlayerController : MonoBehaviour
         float maxHeight = originalHeight + (jumpHeight*charger);
         rb.useGravity = false;
         jump = true;
+        SoundManager.Instance.Play(jumpSound);
         yield return null;
 
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
@@ -187,7 +189,7 @@ public class PlayerController : MonoBehaviour
         movement = true;
         landParticles.Play();
         jumpCount++;
-        SoundManager.Instance.Play(jumpSound);
+        SoundManager.Instance.Play(dropSound);
         yield return null;
 	}
 

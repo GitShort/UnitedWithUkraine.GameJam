@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         {
             ContinueGame();
         }
-        SoundManager.Instance.PlayMusic(bgMusic);
     }
 
 	private void Update()
