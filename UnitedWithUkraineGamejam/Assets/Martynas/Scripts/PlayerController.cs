@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool jump = false;
     bool movement = true;
     bool ground = false;
+    bool cancelJump = false;
     public float jumpHeight = 0f;
     public float jumpSpeed = 0f;
 
@@ -77,12 +78,17 @@ public class PlayerController : MonoBehaviour
                 {
                     charger = 1;
                 }
-                if (!chargeParticles.isPlaying)
-                    chargeParticles.Play();
+
 
                 var emission = chargeParticles.emission;
                 emission.rateOverTime = 20 * charger;
 
+            }
+
+            if (Input.GetMouseButtonDown(0) && !jump)
+			{
+                if (!chargeParticles.isPlaying)
+                    chargeParticles.Play();
             }
 
             if (Input.GetMouseButtonUp(0) && !jump)
@@ -91,6 +97,13 @@ public class PlayerController : MonoBehaviour
                 if (chargeParticles.isPlaying)
                     chargeParticles.Stop();
                 StartCoroutine(Jump());
+            }
+
+            if(Input.GetMouseButtonDown(1))
+			{
+                cancelJump = true;
+                if (chargeParticles.isPlaying)
+                    chargeParticles.Stop();
             }
         }
     }
@@ -155,47 +168,56 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Jump()
 	{
-        jumpParticles.Play();
-        ground = false;
-        float originalHeight = transform.position.y;
-        float maxHeight = originalHeight + (jumpHeight*charger);
-        rb.useGravity = false;
-        jump = true;
-        SoundManager.Instance.Play(jumpSound);
-        yield return null;
-
-        rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-
-        while (transform.position.y < maxHeight && !ground)
-		{
-            //Debug.Log(rb.velocity.y);
-            transform.position += transform.up * Time.deltaTime * jumpSpeed;
+        if (!cancelJump)
+        {
+            jumpParticles.Play();
+            ground = false;
+            float originalHeight = transform.position.y;
+            float maxHeight = originalHeight + (jumpHeight * charger);
+            rb.useGravity = false;
+            jump = true;
+            SoundManager.Instance.Play(jumpSound);
             yield return null;
+
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+
+            while (transform.position.y < maxHeight && !ground)
+            {
+                //Debug.Log(rb.velocity.y);
+                transform.position += transform.up * Time.deltaTime * jumpSpeed;
+                yield return null;
+            }
+
+            rb.useGravity = true;
+
+            while (!ground)
+            {
+                falling = true;
+                transform.position -= transform.up * Time.deltaTime * jumpSpeed * 3f;
+                if (transform.position.y < bottom.y)
+                {
+                    transform.position += transform.up * Time.deltaTime * jumpSpeed * 3f;
+                    yield return null;
+                }
+                yield return null;
+            }
+            falling = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.useGravity = true;
+            jump = false;
+            charger = 0;
+            movement = true;
+            landParticles.Play();
+            jumpCount++;
+            SoundManager.Instance.Play(dropSound);
         }
-
-        rb.useGravity = true;
-
-		while (!ground && transform.position.y > bottom.y)
+        else
 		{
-            falling = true;
-            transform.position -= transform.up * Time.deltaTime * jumpSpeed * 3f;
-			yield return null;
-		}
-
-        if(transform.position.y < bottom.y)
-		{
-            transform.position += transform.up * Time.deltaTime * jumpSpeed * 3f;
+            movement = true;
+            cancelJump = false;
+            charger = 0;
         }
-        falling = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.useGravity = true;
-        jump = false;
-        charger = 0;
-        movement = true;
-        landParticles.Play();
-        jumpCount++;
-        SoundManager.Instance.Play(dropSound);
         yield return null;
 	}
 

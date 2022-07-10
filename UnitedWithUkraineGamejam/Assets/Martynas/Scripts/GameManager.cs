@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerController player;
 
-    public AudioClip bgMusic;
-
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -54,6 +52,10 @@ public class GameManager : MonoBehaviour
         {
             ContinueGame();
         }
+        if (SceneManager.sceneCountInBuildSettings-1 > SceneManager.GetActiveScene().buildIndex)
+        {
+            Debug.Log("works");
+        }
     }
 
 	private void Update()
@@ -70,7 +72,10 @@ public class GameManager : MonoBehaviour
 	public void LevelFinished()
 	{
         levelPassed = true;
-        UICanvas.SetActive(true);
+        if (SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex)
+        {
+            UICanvas.SetActive(true);
+        }
         pauseGame = true;
         Cursor.visible = true;
         jumpText.gameObject.SetActive(true);
