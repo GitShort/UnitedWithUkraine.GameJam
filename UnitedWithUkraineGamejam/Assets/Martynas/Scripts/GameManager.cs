@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 	}
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ContinueGame()
 	{
         UICanvasPause.SetActive(false);

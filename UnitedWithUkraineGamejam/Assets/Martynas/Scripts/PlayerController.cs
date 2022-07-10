@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject waterParticles;
     [SerializeField] GameObject borschtParticles;
+    [SerializeField] GameObject deathParticles;
 
     private void Start()
 	{
@@ -205,6 +206,12 @@ public class PlayerController : MonoBehaviour
         {
             PlayParticles(borschtParticles);
         }
+        if (other.gameObject.tag.Equals("Lose"))
+        {
+            PlayParticles(deathParticles);
+            this.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            StartCoroutine(loseLevel());
+        }
     }
 
     void PlayParticles(GameObject gameobject)
@@ -225,4 +232,10 @@ public class PlayerController : MonoBehaviour
 	{
         return jumpCount;
 	}
+
+    IEnumerator loseLevel()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.RestartLevel();
+    }
 }
