@@ -5,21 +5,21 @@ using TMPro;
 
 public class PopupText : MonoBehaviour
 {
-    [SerializeField] GameObject textObject;
     private float floatTime = 3f;
     [SerializeField] float startingTime = 3f;
     private Transform CameraLocation;
+    private bool startMoving = false;
     // Start is called before the first frame update
     void Start()
     {
         CameraLocation = Camera.main.transform;
         floatTime = startingTime;
-        textObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
 	private void FixedUpdate()
 	{
-        if (textObject.activeSelf)
+        if (startMoving)
         {
             floatTime -= Time.deltaTime;
         }
@@ -27,9 +27,9 @@ public class PopupText : MonoBehaviour
 
 	public void Collected(string text)
 	{
-        textObject.SetActive(true);
         floatTime = startingTime;
-        textObject.GetComponent<TextMeshPro>().text = text;
+        GetComponent<TextMeshPro>().text = text;
+        startMoving = true;
         StartCoroutine(floatUp());
 	}
 
@@ -37,11 +37,11 @@ public class PopupText : MonoBehaviour
 	{
         while (floatTime > 0f)
         {
-            textObject.transform.position += transform.up * Time.deltaTime;
-            textObject.transform.LookAt(CameraLocation);
+            transform.position += transform.up * Time.deltaTime;
+            transform.LookAt(CameraLocation);
             yield return null;
         }
-        textObject.SetActive(false);
+        Destroy(gameObject);
         yield return null;
 	}
 }

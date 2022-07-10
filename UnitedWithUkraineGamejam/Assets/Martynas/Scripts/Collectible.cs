@@ -10,9 +10,9 @@ public class Collectible : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.GetComponent<PopupText>() != null)
+		if(other.GetComponent<PlayerController>() != null)
 		{
-			other.GetComponent<PopupText>().Collected(popUpText);
+			TextsBuffer.Instance.MoveText(other.transform.position,popUpText);
 			CollectiblesManager.Instance.FoodCollected();
 			Destroy(gameObject);
 		}
