@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Airidas/Levels/Level 4.unity
     guid: 824777ea47c557f47a2fc15d3417993a
+  - enabled: 1
+    path: Assets/Airidas/Levels/Level 5.unity
+    guid: 62b4fe94bff4356499baa111382fe214
   m_configObjects: {}

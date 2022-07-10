@@ -38,7 +38,7 @@ public class PopupText : MonoBehaviour
         while (floatTime > 0f)
         {
             transform.position += transform.up * Time.deltaTime;
-            transform.LookAt(CameraLocation);
+            transform.rotation = Quaternion.LookRotation(transform.position - CameraLocation.position);
             yield return null;
         }
         Destroy(gameObject);

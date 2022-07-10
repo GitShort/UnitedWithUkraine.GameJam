@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [TagSelector]
     public string[] jumptableTags = new string[] { };
 
+    [SerializeField] AudioClip jumpSound;
+
     //---------------
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
@@ -185,6 +187,7 @@ public class PlayerController : MonoBehaviour
         movement = true;
         landParticles.Play();
         jumpCount++;
+        SoundManager.Instance.Play(jumpSound);
         yield return null;
 	}
 

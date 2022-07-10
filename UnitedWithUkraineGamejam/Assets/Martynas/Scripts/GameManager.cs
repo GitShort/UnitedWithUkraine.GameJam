@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public PlayerController player;
 
+    public AudioClip bgMusic;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -48,7 +50,12 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.SetCursor(mouseCursor, hotSpot, cursorMode);
         }
-	}
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            ContinueGame();
+        }
+        SoundManager.Instance.PlayMusic(bgMusic);
+    }
 
 	private void Update()
 	{
@@ -78,12 +85,14 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
 	{
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-	}
+        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void LoadMenuScene()
 	{
-        SceneManager.LoadSceneAsync(0);
+        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
 	}
 
     public void ExitGame()

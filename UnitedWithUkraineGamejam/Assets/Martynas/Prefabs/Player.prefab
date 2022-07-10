@@ -76,6 +76,7 @@ MonoBehaviour:
   - Ground
   - Borscht
   - Lose
+  jumpSound: {fileID: 8300000, guid: 624ce34b3cf8b2645b847a86712b9dbb, type: 3}
   indicator: {fileID: 0}
   jumpParticles: {fileID: 7897073578172949364}
   landParticles: {fileID: 724867032180693588}
