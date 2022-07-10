@@ -99,11 +99,12 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Jump());
             }
 
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetMouseButtonDown(1) && (charger != 0))
 			{
                 cancelJump = true;
                 if (chargeParticles.isPlaying)
                     chargeParticles.Stop();
+                landParticles.Play();
             }
         }
     }
@@ -277,7 +278,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator setFloor()
 	{
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         bottom = transform.position;
     }
 
