@@ -3534,7 +3534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &854284712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9305,6 +9305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1091365200381899857, guid: 767f59d701bc2af41973ed8f7e9317b1,
+        type: 3}
+      propertyPath: FinishCanvas
+      value: 
+      objectReference: {fileID: 854284711}
     - target: {fileID: 1128920864490861993, guid: 767f59d701bc2af41973ed8f7e9317b1,
         type: 3}
       propertyPath: m_LocalPosition.x

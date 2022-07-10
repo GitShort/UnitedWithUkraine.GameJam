@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject UICanvas;
     public GameObject UICanvasPause;
+    public GameObject FinishCanvas;
     public TextMeshProUGUI jumpText;
 
     public Texture2D mouseCursor;
@@ -52,10 +53,6 @@ public class GameManager : MonoBehaviour
         {
             ContinueGame();
         }
-        if (SceneManager.sceneCountInBuildSettings-1 > SceneManager.GetActiveScene().buildIndex)
-        {
-            Debug.Log("works");
-        }
     }
 
 	private void Update()
@@ -72,9 +69,13 @@ public class GameManager : MonoBehaviour
 	public void LevelFinished()
 	{
         levelPassed = true;
-        if (SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex)
+        if (SceneManager.sceneCountInBuildSettings - 1 > SceneManager.GetActiveScene().buildIndex)
         {
             UICanvas.SetActive(true);
+        }
+        else
+		{
+            FinishCanvas.SetActive(true);
         }
         pauseGame = true;
         Cursor.visible = true;
