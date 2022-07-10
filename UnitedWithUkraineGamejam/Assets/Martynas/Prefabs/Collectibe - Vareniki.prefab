@@ -265,6 +265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpText: + Vareniki
+  eatParticles: {fileID: 5028687805897194218, guid: 1de53e2cdea6f9949b14603c37aa9a33,
+    type: 3}
 --- !u!65 &8534909953614242096
 BoxCollider:
   m_ObjectHideFlags: 0
