@@ -2031,12 +2031,11 @@ MonoBehaviour:
   UICanvas: {fileID: 3767942723497764888}
   UICanvasPause: {fileID: 0}
   jumpText: {fileID: 0}
-  mouseCursor: {fileID: 2800000, guid: 8217517750a123b47ba8e5b3c03cdef2, type: 3}
+  mouseCursor: {fileID: 2800000, guid: f50d70dffe343af44a4c54111266a5f7, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   pauseGame: 0
   player: {fileID: 0}
-  bgMusic: {fileID: 8300000, guid: 0fd5bc3cc74b1094187be8da63a8e34e, type: 3}
 --- !u!224 &6158707437400161641
 RectTransform:
   m_ObjectHideFlags: 0
