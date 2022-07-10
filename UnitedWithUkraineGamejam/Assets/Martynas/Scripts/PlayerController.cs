@@ -31,7 +31,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip jumpSound;
 
     [SerializeField] AudioClip[] eatSounds;
+    [SerializeField] AudioClip[] deathSound;
+    [SerializeField] AudioClip[] waterSound;
     [SerializeField] AudioSource audioSource;
+
+
     //---------------
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
@@ -207,14 +211,26 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Water"))
         {
+            audioSource.clip = waterSound[Random.Range(0, 2)];
+            audioSource.Play();
             PlayParticles(waterParticles);
         }
         if (other.gameObject.tag.Equals("Borscht"))
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = waterSound[Random.Range(0, 2)];
+                audioSource.Play();
+            }
             PlayParticles(borschtParticles);
+
         }
         if (other.gameObject.tag.Equals("Lose"))
         {
+
+                audioSource.clip = deathSound[Random.Range(0, 2)];
+                audioSource.Play();
+
             PlayParticles(deathParticles);
             this.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
             StartCoroutine(loseLevel());

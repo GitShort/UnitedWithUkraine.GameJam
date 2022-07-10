@@ -82,6 +82,12 @@ MonoBehaviour:
   eatSounds:
   - {fileID: 8300000, guid: d64c61eeee5524a4b810362114797944, type: 3}
   - {fileID: 8300000, guid: f65eb4bafedbb6647b0ca4111b2d1824, type: 3}
+  deathSound:
+  - {fileID: 8300000, guid: c382c7ef0fba8f14e9d15afb8947f552, type: 3}
+  - {fileID: 8300000, guid: 65b2f1e113cd0334b9d2cdef033b0352, type: 3}
+  waterSound:
+  - {fileID: 8300000, guid: 2d75b3a0f08f72b47b252cd498ce494f, type: 3}
+  - {fileID: 8300000, guid: d06d29165ee25d94aaa862c8255886e3, type: 3}
   audioSource: {fileID: 2861988626041616539}
   indicator: {fileID: 0}
   jumpParticles: {fileID: 7897073578172949364}
